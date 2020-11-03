@@ -18,3 +18,9 @@ Example:
 ```
 find | grep .yaml | awk '{system("cat " $1)}' | grep nginx
 ```
+If you want to exclude symlinks, add `-type f` to find (or negate finding only symlinks with `find ! -type l`):
+```
+find -type f | grep .yaml | awk '{system("cat " $1)}' | grep nginx
+```
+
+If, otherwise, you only want symlinks, you can either use `-type l` or negate finding the normal files: `find ! -type f`
